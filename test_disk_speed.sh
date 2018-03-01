@@ -26,4 +26,5 @@ echo "Host        : ${HOSTNAME}"
 echo "Directory   : ${DIR}"
 echo "Write speed : $write_speed"
 echo "Read speed  : $read_speed"
-
+echo "free disk space"
+df -h .
