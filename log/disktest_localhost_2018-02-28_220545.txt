@@ -1,0 +1,4 @@
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.8588
+Write speed : 38321861 bytes/sec
+Read speed  : 68257292 bytes/sec

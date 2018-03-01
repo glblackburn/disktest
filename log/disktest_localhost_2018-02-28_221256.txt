@@ -1,0 +1,5 @@
+Date        : Wed Feb 28 22:13:17 EST 2018
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.8744
+Write speed : 52442000 bytes/sec
+Read speed  : 6712393138 bytes/sec

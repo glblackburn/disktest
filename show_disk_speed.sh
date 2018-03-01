@@ -1,12 +1,17 @@
 #!/bin/bash
 
 find log/* -type d | while read dir ; do
-echo "$dir"
+    echo "$dir"
     write_speed=`cat ${dir}/write.txt | grep "bytes/sec"| sed "s/^.*(\([0-9]* bytes\/sec\))$/\1/"`
     read_speed=`cat ${dir}/read.txt | grep "bytes/sec"| sed "s/^.*(\([0-9]* bytes\/sec\))$/\1/"`
 
     echo "Write speed : $write_speed"
     echo "Read speed  : $read_speed"
+done
+
+find log -type f -name "disk*" | while read file ; do
+    echo "$file"
+    cat $file
 done
 
 exit
