@@ -1,8 +1,0 @@
-Date        : Thu Mar  1 07:22:21 EST 2018
-Host        : webwolf.local
-Directory   : /Users/lblackb/disktest/tmp/disktest.14641
-Write speed : 60888309 bytes/sec
-Read speed  : 6632460160 bytes/sec
-free disk space
-Filesystem   Size   Used  Avail Capacity iused      ifree %iused  Mounted on
-/dev/disk1  698Gi  569Gi  128Gi    82%  962270 4294005009    0%   /
