@@ -19,7 +19,7 @@ function makeTestDir {
     mkdir ${TEST_PATH}
     if [[ ! -e ${TEST_PATH} ]] ; then
 	echo "Could not create test path: ${TEST_PATH}"
-	exit 1
+	exit 10
     fi
     ls -la ${TEST_PATH}
 }
@@ -29,7 +29,7 @@ function copyScriptToTestDir {
     cp ${TEST_SCRIPT} ${TEST_PATH}
     if [[ ! -e ${TEST_PATH}/${TEST_SCRIPT} ]] ; then
 	echo "Could not copy test script (${TEST_SCRIPT}) to test path: ${TEST_PATH}"
-	exit 3
+	exit 11
     fi
     ls -la ${TEST_PATH}
 }
@@ -46,6 +46,12 @@ function runTest {
 
 function pullLog {
     echo "copy ${TEST_PATH}/${TEST_LOG} to ${LOG_DIR}"
+    mkdir -p ${LOG_DIR}
+    if [[ ! -d ${LOG_DIR} ]] ; then
+	echo "Log dir does not exist: ${LOG_DIR}"
+	exit 12
+    fi
+
     cp "${TEST_PATH}/${TEST_LOG}" ${LOG_DIR}
     ls -la  ${LOG_DIR}
 }
@@ -60,7 +66,7 @@ function cleanUp {
     rm -r ${TEST_PATH}
     if [[ -e ${TEST_PATH} ]] ; then
 	echo "Could not delete test path: ${TEST_PATH}"
-	exit 2
+	exit 13
     fi
     ls -la ${TEST_PATH}
 }
