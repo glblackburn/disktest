@@ -1,0 +1,3 @@
+1024+0 records in
+1024+0 records out
+1073741824 bytes transferred in 14.173677 secs (75756053 bytes/sec)
