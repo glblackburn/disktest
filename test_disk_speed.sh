@@ -24,7 +24,9 @@ rm ${TMP_FILE}
 echo "Date        : `date`"
 echo "Host        : ${HOSTNAME}"
 echo "Directory   : ${DIR}"
-echo "Write speed : $write_speed"
-echo "Read speed  : $read_speed"
 echo "free disk space"
 df -h .
+ioreg -r -w 0 -d 1 -c AppleAHCIDiskDriver
+system_profiler SPSoftwareDataType
+echo "Write speed : $write_speed"
+echo "Read speed  : $read_speed"
