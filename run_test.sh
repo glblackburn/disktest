@@ -24,7 +24,7 @@ function runCommand {
 	echo "cmd=[${cmd}]"
     fi
     if [ $IS_LOCAL ] ; then
-	$cmd
+	$($cmd)
     else
 	if [ "$VERBOSE" = true ] ; then
 	    echo "ssh ${REMOTE_USER}@${REMOTE_HOST} \"$cmd\""
@@ -35,39 +35,39 @@ function runCommand {
 
 function testStat {
     if [ $IS_LOCAL ] ; then
-	stat ${TEST_PATH} > /dev/null 2>&1
+	stat "${TEST_PATH}" > /dev/null 2>&1
     else
-	runCommand "stat ${TEST_PATH} > /dev/null 2>&1"
+	runCommand "stat '${TEST_PATH}' > /dev/null 2>&1"
     fi
 }
 
 function makeTestDir {
     echo "makeTestDir"
-    runCommand "mkdir ${TEST_PATH}"
+    runCommand "mkdir '${TEST_PATH}'"
 
-    if ! testStat ${TEST_PATH} ; then
+    if ! testStat "${TEST_PATH}" ; then
 	echo "Could not create test path: ${TEST_PATH}"
 	exit 11
     fi
     if [ "$VERBOSE" = true ] ; then
 	runCommand "hostname"
-	runCommand "ls -la ${TEST_PATH}"
+	runCommand "ls -la '${TEST_PATH}'"
     fi
 }
 
 function copyScriptToTestDir {
     echo "copyScriptToTestDir"
     if [ $IS_LOCAL ] ; then
-	cp ${TEST_SCRIPT} ${TEST_PATH}
+	cp ${TEST_SCRIPT} "${TEST_PATH}"
     else
-	scp -q ${TEST_SCRIPT} ${REMOTE_USER}@${REMOTE_HOST}:${TEST_PATH}
+	scp -q ${TEST_SCRIPT} "${REMOTE_USER}@${REMOTE_HOST}:${TEST_PATH}"
     fi
     if ! testStat "${TEST_PATH}/${TEST_SCRIPT}" ; then
 	echo "Could not copy test script (${TEST_SCRIPT}) to test path: ${TEST_PATH}"
 	exit 20
     fi
     if [ "$VERBOSE" = true ] ; then
-	runCommand "ls -la ${TEST_PATH}"
+	runCommand "ls -la '${TEST_PATH}'"
     fi
 }
 
@@ -76,18 +76,18 @@ function runTest {
     
     if [ $IS_LOCAL ] ; then
 	CPATH=`pwd`
-	cd ${TEST_PATH}
-	./${TEST_SCRIPT} > ${TEST_LOG}
+	cd "${TEST_PATH}"
+	"./${TEST_SCRIPT}" > ${TEST_LOG}
 	cd ${CPATH}
 	if [ "$VERBOSE" = true ] ; then
-	    ls -la ${TEST_PATH}
-	    cat ${TEST_PATH}/${TEST_LOG}
+	    ls -la "${TEST_PATH}"
+	    cat "${TEST_PATH}/${TEST_LOG}"
 	fi
     else
-    	runCommand "cd ${TEST_PATH} && ./${TEST_SCRIPT} > ${TEST_LOG}"
+    	runCommand "cd '${TEST_PATH}' && './${TEST_SCRIPT}' > '${TEST_LOG}'"
 	if [ "$VERBOSE" = true ] ; then
-	    runCommand "ls -la ${TEST_PATH}"
-	    runCommand "cat ${TEST_PATH}/${TEST_LOG}"
+	    runCommand "ls -la '${TEST_PATH}'"
+	    runCommand "cat '${TEST_PATH}/${TEST_LOG}'"
 	fi
     fi
 }
@@ -117,14 +117,14 @@ function showLog {
 
 function cleanUp {
     echo "cleanUp"
-    runCommand "rm -r ${TEST_PATH}"
-    if testStat ${TEST_PATH} ; then
+    runCommand "rm -r '${TEST_PATH}'"
+    if testStat "${TEST_PATH}" ; then
 	echo "Could not delete test path: ${TEST_PATH}"
 	exit 41
     fi
     if [ "$VERBOSE" = true ] ; then
 	runCommand "hostname"
-	runCommand "ls -la ${TEST_PATH}"
+	runCommand "ls -la '${TEST_PATH}'"
     fi
 }
 
@@ -162,7 +162,6 @@ function cleanUp {
 ################################################################################
 VERBOSE=false
 while getopts ":hH:u:v" opt; do
-#    echo "*** HI! ***"
     case ${opt} in
 	u )
 	    REMOTE_USER=$OPTARG
@@ -176,7 +175,6 @@ while getopts ":hH:u:v" opt; do
 	    REMOTE_USER=$OPTARG
 	    ;;
 	v )
-#	    echo "*** HI! ***"
 	    VERBOSE=true
 	    ;;
 	h )
@@ -198,7 +196,7 @@ LOCAL_HOST=`hostname`
 ################################################################################
 # validate parameters
 ################################################################################
-if [ ! $DIR ] ; then
+if [ ! "$DIR" ] ; then
     echo "missing path: set to current dir"
     DIR=`pwd`
 fi
