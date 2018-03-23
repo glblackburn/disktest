@@ -8,23 +8,24 @@ TEST_DIR="disktest.$$"
 
 DATETIME=`date "+%Y-%m-%d_%H%M%S"`
 
+#getops check :hH:u:v
+#--help does not really work, need to research
 function usage {
-    echo "Usage: $0 [-H <host>] [<path>]"
+    echo "Usage: $0 [-hv] [-H <host>] [<path>]"
     echo "Options"
     echo "  -H                      Remote host."
     echo "  -u                      Remote user."
-    echo "  -h                      Display this help message."
-    echo "  --help                  Display this help message."
-#    echo "  --host                  Display this help message."
+    echo "  -h --help               Display this help message."
+    echo "  -v                      Verbose output"
 }
 
 function runCommand {
     cmd=$1
-    if [ "$VERBOSE" = true ] ; then
-	echo "cmd=[${cmd}]"
-    fi
-    if [ $IS_LOCAL ] ; then
-	$($cmd)
+    if [ $IS_LOCAL ] ; then	
+	if [ "$VERBOSE" = true ] ; then
+	    echo "run local cmd=[${cmd}]"
+	fi
+	eval ${cmd}
     else
 	if [ "$VERBOSE" = true ] ; then
 	    echo "ssh ${REMOTE_USER}@${REMOTE_HOST} \"$cmd\""
