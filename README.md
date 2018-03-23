@@ -1,4 +1,5 @@
 # Try it
+~~~
 ./run_test.sh -h
 Usage: ./run_test.sh [-hv] [-H <host>] [<path>]
 Options
@@ -6,10 +7,10 @@ Options
   -u                      Remote user.
   -h --help               Display this help message.
   -v                      Verbose output
-
+~~~
 
 # Example local run
-
+~~~
 $ time ./run_test.sh
 missing path: set to current dir
 missing host: set to local hostname
@@ -31,9 +32,10 @@ Filesystem   Size   Used  Avail Capacity iused      ifree %iused  Mounted on
 real    0m19.655s
 user    0m0.047s
 sys    0m1.160s
+~~~
 
 # Example remote run
-
+~~~
 $ time ./run_test.sh -H tardis.local -u lblackb
 found -H tardis.local
 found -u lblackb
@@ -59,7 +61,7 @@ Filesystem     Size   Used  Avail Capacity iused               ifree %iused  Mou
 real    0m7.494s
 user    0m0.235s
 sys    0m0.118s
-
+~~~
 
 # Some example log output greped for a summary.
 
