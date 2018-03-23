@@ -69,34 +69,36 @@ MacMini.  5 is a new SSD drive in a remote MacMini.  The first run was
 a weird outlier. I don't beleve on the read speed.  The write speed is
 consitent with the other local disk runs..
 
-  $ cat disktest_webwolf.local_2018-03-23_*.txt disktest_tardis.local_2018-03-23*.txt | grep -e "Directory" -e speed -e Host
-  
-  1.
-  Host        : webwolf.local
-  Directory   : /Users/lblackb/disktest/disktest.11305
-  Write speed : 50509294 bytes/sec
-  Read speed  : 6808203870 bytes/sec
-  
-  2.
-  Host        : webwolf.local
-  Directory   : /Users/lblackb/disktest/disktest.11422
-  Write speed : 50342934 bytes/sec
-  Read speed  : 60185159 bytes/sec
-  
-  3.
-  Host        : webwolf.local
-  Directory   : /Volumes/Macintosh HD 1/disktest.11509
-  Write speed : 59453770 bytes/sec
-  Read speed  : 88464812 bytes/sec
-  
-  4.
-  Host        : webwolf.local
-  Directory   : /Users/lblackb/disktest/disktest.11668
-  Write speed : 38096021 bytes/sec
-  Read speed  : 73277187 bytes/sec
-  
-  5.
-  Host        : tardis.local
-  Directory   : /Users/lblackb/disktest/disktest.11085
-  Write speed : 403749613 bytes/sec
-  Read speed  : 517266288 bytes/sec
+~~~
+$ cat disktest_webwolf.local_2018-03-23_*.txt disktest_tardis.local_2018-03-23*.txt | grep -e "Directory" -e speed -e Host
+
+1.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11305
+Write speed : 50509294 bytes/sec
+Read speed  : 6808203870 bytes/sec
+
+2.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11422
+Write speed : 50342934 bytes/sec
+Read speed  : 60185159 bytes/sec
+
+3.
+Host        : webwolf.local
+Directory   : /Volumes/Macintosh HD 1/disktest.11509
+Write speed : 59453770 bytes/sec
+Read speed  : 88464812 bytes/sec
+
+4.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11668
+Write speed : 38096021 bytes/sec
+Read speed  : 73277187 bytes/sec
+
+5.
+Host        : tardis.local
+Directory   : /Users/lblackb/disktest/disktest.11085
+Write speed : 403749613 bytes/sec
+Read speed  : 517266288 bytes/sec
+~~~
