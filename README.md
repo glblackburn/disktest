@@ -1,12 +1,14 @@
-Usage: ./run_test.sh [-H <host>] [<path>]
+Try it
+./run_test.sh -h
+Usage: ./run_test.sh [-hv] [-H <host>] [<path>]
 Options
   -H                      Remote host.
   -u                      Remote user.
-  -h                      Display this help message.
-  --help                  Display this help message.
+  -h --help               Display this help message.
+  -v                      Verbose output
 
 
-Examples:
+Example local run
 
 $ time ./run_test.sh
 missing path: set to current dir
@@ -30,6 +32,7 @@ real    0m19.655s
 user    0m0.047s
 sys    0m1.160s
 
+Example remote run
 
 $ time ./run_test.sh -H tardis.local -u lblackb
 found -H tardis.local
@@ -56,3 +59,44 @@ Filesystem     Size   Used  Avail Capacity iused               ifree %iused  Mou
 real    0m7.494s
 user    0m0.235s
 sys    0m0.118s
+
+
+Some example log output greped for a summary.
+
+1,2,and 4 are the same local disk in a "MacBook Pro (13-inch, Mid
+2012). 3 is a mounted disk on the same MacBook Pro that came out of a
+MacMini.  5 is a new SSD drive in a remote MacMini.  The first run was
+a weird outlier. I don't beleve on the read speed.  The write speed is
+consitent with the other local disk runs..
+
+$ cat disktest_webwolf.local_2018-03-23_*.txt disktest_tardis.local_2018-03-23*.txt | grep -e "Directory" -e speed -e Host
+
+1.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11305
+Write speed : 50509294 bytes/sec
+Read speed  : 6808203870 bytes/sec
+
+2.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11422
+Write speed : 50342934 bytes/sec
+Read speed  : 60185159 bytes/sec
+
+3.
+Host        : webwolf.local
+Directory   : /Volumes/Macintosh HD 1/disktest.11509
+Write speed : 59453770 bytes/sec
+Read speed  : 88464812 bytes/sec
+
+4.
+Host        : webwolf.local
+Directory   : /Users/lblackb/disktest/disktest.11668
+Write speed : 38096021 bytes/sec
+Read speed  : 73277187 bytes/sec
+
+5.
+Host        : tardis.local
+Directory   : /Users/lblackb/disktest/disktest.11085
+Write speed : 403749613 bytes/sec
+Read speed  : 517266288 bytes/sec
