@@ -67,9 +67,12 @@ sys    0m0.118s
 
 1,2,and 4 are the same local disk in a "MacBook Pro (13-inch, Mid
 2012). 3 is a mounted disk on the same MacBook Pro that came out of a
-MacMini.  5 is a new SSD drive in a remote MacMini.  The first run was
-a weird outlier. I don't beleve on the read speed.  The write speed is
-consitent with the other local disk runs..
+MacMini.  5 is a new SSD drive in a remote MacMini.
+
+The first run was a weird outlier. I don't beleve the read speed.  The
+write speed is consitent with the other local disk runs.  Run 5 shows
+the major performance improvement with the SSD drive over the old
+platter drive.
 
 ~~~
 $ cat disktest_webwolf.local_2018-03-23_*.txt disktest_tardis.local_2018-03-23*.txt | grep -e "Directory" -e speed -e Host
